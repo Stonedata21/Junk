@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Junk Removal in Atlanta | Gentleman Junk and Hauling</title>
+  <meta name="description" content="Gentleman Junk and Hauling: junk removal across Atlanta. Garage move-outs, furniture, appliances, storage clean-outs, yard waste, and construction debris. Send a photo for a free quote.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="logo">GENTLEMAN <span>JUNK AND HAULING</span></div>
+    <a class="call" href="tel:+16783486432">Call Now</a>
+  </header>
+
+  <div class="hero">
+    <h1>Big or Small.<br><span>We Haul It All.</span></h1>
+    <p>Junk removal across Atlanta. Junk today, space tomorrow. Send us a photo and your budget, and we'll give you a free quote.</p>
+    <a href="#quote" class="btn">Get a Free Quote</a>
+    <img class="hero-photo" src="img/truck.jpg" alt="Gentleman Junk and Hauling truck parked on a driveway">
+  </div>
+
+  <section>
+    <h2>What We <span>Haul</span></h2>
+    <div class="gallery">
+      <figure><img src="img/garage.jpg" alt="Cluttered garage before a move-out" loading="lazy"><figcaption>Garage Move Outs</figcaption></figure>
+      <figure><img src="img/furniture.jpg" alt="Sofa and chairs ready for removal" loading="lazy"><figcaption>Furniture Removal</figcaption></figure>
+      <figure><img src="img/appliance.jpg" alt="Fridge, stove, and washer ready for removal" loading="lazy"><figcaption>Appliance Removal</figcaption></figure>
+      <figure><img src="img/storage.jpg" alt="Boxes stacked at a storage unit" loading="lazy"><figcaption>Storage Clean Outs</figcaption></figure>
+    </div>
+    <ul class="list">
+      <li>Household clean-outs</li>
+      <li>Yard waste &amp; debris</li>
+      <li>Construction debris</li>
+      <li>And more!</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How It <span>Works</span></h2>
+    <ol class="steps">
+      <li><strong>Tell us what needs to go</strong>Send a photo and your budget.</li>
+      <li><strong>Get a quote</strong>We'll tell you our price and why.</li>
+      <li><strong>We haul it away</strong>We load it up and dispose of it responsibly.</li>
+    </ol>
+  </section>
+
+  <section id="quote">
+    <h2>Get Your <span>Free Quote</span></h2>
+    <form id="quoteForm">
+      <div>
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" required autocomplete="name">
+      </div>
+      <div>
+        <label for="phone">Phone number</label>
+        <input id="phone" name="phone" type="tel" required autocomplete="tel">
+      </div>
+      <div>
+        <label for="items">What needs to go?</label>
+        <textarea id="items" name="items" placeholder="Example: old couch, a fridge, and 6 boxes from the garage." required></textarea>
+      </div>
+      <div>
+        <label for="budget">What were you thinking of paying? <span class="note">(optional)</span></label>
+        <input id="budget" name="budget" type="text" placeholder="Example: around $150">
+      </div>
+      <p class="note">Your email app will open. Attach photos there, or text them to (678) 348-6432.</p>
+      <button type="submit" class="submit">Send Request</button>
+    </form>
+  </section>
+
+  <div class="bottom">
+    <h2>Call or Text</h2>
+    <a href="tel:+16783486432">(678) 348-6432</a>
+  </div>
+
+  <footer style="margin-top:30px;">
+    <p>© 2026 Gentleman Junk and Hauling · Atlanta, GA</p>
+  </footer>
+</div>
+
+<script>
+  // Opens the visitor's email app with the request filled in.
+  document.getElementById("quoteForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const v = (id) => this.elements[id].value.trim();
+    const body = [
+      "New junk removal quote request",
+      "",
+      "Name: " + v("name"),
+      "Phone: " + v("phone"),
+      "Budget: " + (v("budget") || "not given"),
+      "",
+      "What needs to go:",
+      v("items"),
+      "",
+      "Photos: I will attach them or text them to you."
+    ].join("\n");
+    const subject = encodeURIComponent("Quote request from " + v("name"));
+    window.location.href = "mailto:hello@example.com?subject=" + subject + "&body=" + encodeURIComponent(body);
+  });
+</script>
+
+</body>
+</html>
