@@ -4,96 +4,370 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Junk Removal in Atlanta | Gentleman Junk and Hauling</title>
-  <meta name="description" content="Gentleman Junk and Hauling: junk removal across Atlanta. Garage move-outs, furniture, appliances, storage clean-outs, yard waste, and construction debris. Send a photo for a free quote.">
+  <meta name="description" content="Gentleman Junk and Hauling: junk removal across Atlanta. Garage move-outs, furniture, appliances, storage clean-outs, yard waste, and construction debris. Book a free estimate today.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .photo-picker { display: grid; gap: 10px; }
-    .photo-picker input[type="file"] { padding: 10px; color: var(--muted); }
-    .previews { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px; }
-    .previews img { width: 100%; height: 90px; object-fit: cover; border-radius: 8px; border: 1px solid #2f3b2f; }
+    :root {
+      --black: #0a0c0a;
+      --charcoal: #121612;
+      --panel: #171d17;
+      --line: #263026;
+      --green: #53e04a;
+      --green-deep: #2fa52a;
+      --white: #f5f7f5;
+      --muted: #aab4aa;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    h1, h2, h3 { font-family: "Bebas Neue", Impact, sans-serif; font-weight: 400; line-height: 1.05; letter-spacing: 0.02em; }
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+    section { padding: 72px 0; }
+    .eyebrow { color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; }
+    .section-title { font-size: clamp(2.2rem, 5vw, 3.4rem); margin: 8px 0 12px; }
+    .section-title span { color: var(--green); }
+    .lead { color: var(--muted); max-width: 620px; }
+
+    /* Header */
+    header.site {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(10,12,10,0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; flex-wrap: wrap; }
+    .logo { font-family: "Bebas Neue", Impact, sans-serif; font-size: 1.6rem; line-height: 1; text-decoration: none; }
+    .logo span { color: var(--green); }
+    .nav ul { list-style: none; display: flex; gap: 24px; }
+    .nav ul a { text-decoration: none; font-weight: 600; font-size: 0.95rem; color: var(--muted); }
+    .nav ul a:hover { color: var(--white); }
+    .nav-cta { display: flex; gap: 12px; align-items: center; }
+    .phone-link { font-weight: 700; text-decoration: none; }
+
+    /* Buttons */
+    .btn {
+      display: inline-block; background: var(--green); color: var(--black);
+      font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em;
+      padding: 14px 26px; border-radius: 8px; text-decoration: none; font-size: 0.95rem;
+      transition: background 0.2s, transform 0.2s; border: none; cursor: pointer;
+    }
+    .btn:hover { background: #7bf56f; transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--white); border: 1px solid #3a463a; }
+    .btn-ghost:hover { background: var(--panel); }
+    .btn-small { padding: 10px 18px; font-size: 0.85rem; }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 72px;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(83,224,74,0.12), transparent 45%),
+        var(--black);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+    .hero h1 { font-size: clamp(3.4rem, 9vw, 6rem); margin: 14px 0 18px; }
+    .hero h1 span { color: var(--green); }
+    .hero p.lead { font-size: 1.1rem; margin-bottom: 30px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-photo { border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 30px 60px rgba(0,0,0,0.5); width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 3; }
+    .trust { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 34px; color: var(--muted); font-weight: 600; font-size: 0.92rem; }
+    .trust span::before { content: "✔ "; color: var(--green); }
+
+    /* Services */
+    .services { background: var(--charcoal); }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 36px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+    .card-body { padding: 18px 20px 22px; }
+    .card h3 { font-size: 1.6rem; margin-bottom: 6px; }
+    .card p { color: var(--muted); font-size: 0.95rem; }
+    .more-list { margin-top: 26px; color: var(--muted); }
+    .more-list strong { color: var(--white); }
+
+    /* Process */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+    .step { border: 1px solid var(--line); border-radius: 12px; padding: 26px; background: var(--panel); }
+    .step-num { font-family: "Bebas Neue", Impact, sans-serif; font-size: 2.6rem; color: var(--green); line-height: 1; }
+    .step h3 { font-size: 1.7rem; margin: 10px 0 8px; }
+    .step p { color: var(--muted); font-size: 0.95rem; }
+
+    /* Pricing */
+    .pricing { background: var(--charcoal); }
+    .pricing-grid { display: grid; grid-template-columns: minmax(0, 680px); justify-content: center; margin-top: 36px; }
+    .pricing-box { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 28px; }
+    .pricing-box h3 { font-size: 1.9rem; margin-bottom: 10px; }
+    .pricing-box p { color: var(--muted); margin-bottom: 12px; }
+
+    /* Booking & quote */
+    .book { text-align: center; }
+    .book-card {
+      max-width: 640px; margin: 0 auto; background: var(--panel);
+      border: 1px solid var(--line); border-radius: 14px; padding: 36px 28px;
+    }
+    .book-card p { color: var(--muted); margin: 10px 0 24px; }
+    .quote { background: var(--charcoal); }
+    .quote-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: start; margin-top: 36px; }
+    .quote-copy h3 { font-size: 2rem; margin-bottom: 12px; }
+    .quote-copy p { color: var(--muted); margin-bottom: 14px; }
+    .quote-copy .phone-big { font-family: "Bebas Neue", Impact, sans-serif; font-size: 2.6rem; color: var(--green); text-decoration: none; display: inline-block; margin-top: 8px; }
+    form.quote-form { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 26px; display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+    form.quote-form .full { grid-column: 1 / -1; }
+    label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
+    label small { color: var(--muted); font-weight: 400; }
+    input, textarea {
+      width: 100%; background: var(--black); color: var(--white);
+      border: 1px solid #2f3b2f; border-radius: 8px; padding: 12px 14px; font: inherit;
+    }
+    input:focus, textarea:focus { outline: 2px solid var(--green); outline-offset: 1px; }
+    textarea { min-height: 110px; resize: vertical; }
+    input[type="file"] { padding: 12px; color: var(--muted); background: var(--black); border: 1px dashed var(--green); cursor: pointer; }
+    .previews { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px; margin-top: 10px; }
+    .previews img { width: 100%; height: 90px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
+    .form-note { color: var(--muted); font-size: 0.88rem; }
+    .quote-form button { grid-column: 1 / -1; width: 100%; border: none; cursor: pointer; }
+
+    /* Final CTA */
+    .final {
+      background: linear-gradient(135deg, var(--green) 0%, #7bf56f 100%);
+      color: var(--black); text-align: center; padding: 72px 0;
+    }
+    .final h2 { font-size: clamp(2.8rem, 7vw, 4.6rem); }
+    .final a.phone { font-family: "Bebas Neue", Impact, sans-serif; font-size: clamp(2.6rem, 8vw, 4.2rem); color: var(--black); text-decoration: none; display: block; margin: 8px 0 18px; }
+    .final .btn { background: var(--black); color: var(--white); }
+    .final .btn:hover { background: #222; }
+
+    footer.site { padding: 44px 0 30px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 28px; }
+    footer h4 { font-family: "Bebas Neue", Impact, sans-serif; font-size: 1.4rem; color: var(--white); font-weight: 400; margin-bottom: 8px; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--green); }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 6px; }
+    .copy { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); text-align: center; font-size: 0.85rem; }
+
+    .float-call { display: none; position: fixed; bottom: 16px; right: 16px; z-index: 30; background: var(--green); color: var(--black); font-weight: 800; padding: 14px 20px; border-radius: 40px; text-decoration: none; box-shadow: 0 8px 24px rgba(83,224,74,0.35); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid, .quote-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .nav ul { display: none; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      section { padding: 56px 0; }
+      form.quote-form { grid-template-columns: 1fr; }
+      .float-call { display: block; }
+      .nav-cta .phone-link { display: none; }
+    }
   </style>
 </head>
 <body>
 
-<div class="wrap">
-  <header class="top">
-    <div class="logo">GENTLEMAN <span>JUNK AND HAULING</span></div>
-    <a class="call" href="tel:+16783486432">Call Now</a>
-  </header>
+<header class="site">
+  <div class="container nav">
+    <a href="#top" class="logo">GENTLEMAN <span>JUNK AND HAULING</span></a>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">How It Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#quote">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="phone-link" href="tel:+16783486432">(678) 348-6432</a>
+      <a class="btn btn-small" href="#book">Book Estimate</a>
+    </div>
+  </div>
+</header>
 
-  <div class="hero">
-    <h1>Big or Small.<br><span>We Haul It All.</span></h1>
-    <p>Junk removal across Atlanta. Junk today, space tomorrow. Send us a photo and your budget, and we'll give you a free quote.</p>
-    <a href="#quote" class="btn">Get a Free Quote</a>
+<div id="top"></div>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Junk Removal · Atlanta, GA</div>
+      <h1>Big or Small.<br><span>We Haul It All.</span></h1>
+      <p class="lead">Full-service junk removal for homes and businesses across Atlanta. We load it, haul it away, and dispose of it responsibly, so you get your space back.</p>
+      <div class="hero-actions">
+        <a href="#book" class="btn">Book a Free Estimate</a>
+        <a href="tel:+16783486432" class="btn btn-ghost">Call (678) 348-6432</a>
+      </div>
+      <div class="trust">
+        <span>Free estimates</span>
+        <span>Upfront pricing</span>
+        <span>Eco-friendly disposal</span>
+        <span>Local crew</span>
+      </div>
+    </div>
     <img class="hero-photo" src="truck.jpg" alt="Gentleman Junk and Hauling truck parked on a driveway">
   </div>
+</section>
 
-  <section>
-    <h2>What We <span>Haul</span></h2>
-    <div class="gallery">
-      <figure><img src="garage.jpg" alt="Cluttered garage before a move-out" loading="lazy"><figcaption>Garage Move Outs</figcaption></figure>
-      <figure><img src="furniture.jpg" alt="Sofa and chairs ready for removal" loading="lazy"><figcaption>Furniture Removal</figcaption></figure>
-      <figure><img src="appliance.jpg" alt="Fridge, stove, and washer ready for removal" loading="lazy"><figcaption>Appliance Removal</figcaption></figure>
-      <figure><img src="storage.jpg" alt="Boxes stacked at a storage unit" loading="lazy"><figcaption>Storage Clean Outs</figcaption></figure>
+<section class="services" id="services">
+  <div class="container">
+    <div class="eyebrow">Services</div>
+    <h2 class="section-title">What We <span>Haul</span></h2>
+    <p class="lead">If it's in your way, we'll take it. Here are the jobs we handle most.</p>
+    <div class="cards">
+      <article class="card">
+        <img src="garage.jpg" alt="Cluttered garage before a move-out" loading="lazy">
+        <div class="card-body"><h3>Garage Move Outs</h3><p>Full garage clean-outs, with everything loaded and hauled away.</p></div>
+      </article>
+      <article class="card">
+        <img src="furniture.jpg" alt="Sofa and chairs ready for removal" loading="lazy">
+        <div class="card-body"><h3>Furniture Removal</h3><p>Couches, mattresses, dressers, and more, carried out and taken away.</p></div>
+      </article>
+      <article class="card">
+        <img src="appliance.jpg" alt="Fridge, stove, and washer ready for removal" loading="lazy">
+        <div class="card-body"><h3>Appliance Removal</h3><p>Fridges, stoves, washers, and dryers removed safely and disposed of properly.</p></div>
+      </article>
+      <article class="card">
+        <img src="storage.jpg" alt="Boxes stacked at a storage unit" loading="lazy">
+        <div class="card-body"><h3>Storage Clean Outs</h3><p>Clear out a storage unit fast, whether it's one shelf or the whole unit.</p></div>
+      </article>
     </div>
-    <ul class="list">
-      <li>Household clean-outs</li>
-      <li>Yard waste &amp; debris</li>
-      <li>Construction debris</li>
-      <li>And more!</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>How It <span>Works</span></h2>
-    <ol class="steps">
-      <li><strong>Tell us what needs to go</strong>Send a photo and your budget.</li>
-      <li><strong>Get a quote</strong>We'll tell you our price and why.</li>
-      <li><strong>We haul it away</strong>We load it up and dispose of it responsibly.</li>
-    </ol>
-  </section>
-
-  <section id="quote">
-    <h2>Get Your <span>Free Quote</span></h2>
-    <form id="quoteForm">
-      <div>
-        <label for="name">Your name</label>
-        <input id="name" name="name" type="text" required autocomplete="name">
-      </div>
-      <div>
-        <label for="phone">Phone number</label>
-        <input id="phone" name="phone" type="tel" required autocomplete="tel">
-      </div>
-      <div>
-        <label for="items">What needs to go?</label>
-        <textarea id="items" name="items" placeholder="Example: old couch, a fridge, and 6 boxes from the garage." required></textarea>
-      </div>
-      <div>
-        <label for="budget">What were you thinking of paying? <span class="note">(optional)</span></label>
-        <input id="budget" name="budget" type="text" placeholder="Example: around $150">
-      </div>
-      <div class="photo-picker">
-        <label for="photos">Photos of the junk <span class="note">(optional)</span></label>
-        <input id="photos" name="photos" type="file" accept="image/*" multiple>
-        <div class="previews" id="previews"></div>
-      </div>
-      <p class="note">Your email app will open. Attach the photos you picked there, or text them to (678) 348-6432.</p>
-      <button type="submit" class="submit">Send Request</button>
-    </form>
-  </section>
-
-  <div class="bottom">
-    <h2>Call or Text</h2>
-    <a href="tel:+16783486432">(678) 348-6432</a>
+    <p class="more-list"><strong>Also:</strong> household clean-outs, yard waste and debris, construction debris, and more.</p>
   </div>
+</section>
 
-  <footer style="margin-top:30px;">
-    <p>© 2026 Gentleman Junk and Hauling · Atlanta, GA</p>
-  </footer>
-</div>
+<section id="process">
+  <div class="container">
+    <div class="eyebrow">How It Works</div>
+    <h2 class="section-title">Simple from <span>start to finish</span></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Book or send details</h3>
+        <p>Book a free estimate or send photos of what needs to go and your budget.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Get your price</h3>
+        <p>We'll give you an honest price and explain what's driving it.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>We haul it away</h3>
+        <p>Our crew loads everything, sweeps up, and disposes of it responsibly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="eyebrow">Pricing</div>
+    <h2 class="section-title">Fair pricing, <span>no surprises</span></h2>
+    <div class="pricing-grid">
+      <div class="pricing-box">
+        <h3>Have a budget in mind?</h3>
+        <p>Tell us what you were hoping to pay. If our price is different, we won't just say no. We'll walk through what's driving the cost and find options that fit.</p>
+        <p>Options can include moving items to the curb ourselves, splitting the job, or booking a slower day for a lower rate.</p>
+        <a href="#quote" class="btn btn-small" style="margin-top:8px;">Share Your Budget</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="container">
+    <div class="eyebrow">Free Estimate</div>
+    <h2 class="section-title">Pick a <span>time that works</span></h2>
+    <div class="book-card">
+      <p>Book a quick call or photo review. We'll confirm your price before we arrive.</p>
+      <a class="btn" href="https://calendar.app.google/pPkQhAfmKDuN8spCA" target="_blank" rel="noopener">Choose a Time</a>
+    </div>
+  </div>
+</section>
+
+<section class="quote" id="quote">
+  <div class="container">
+    <div class="eyebrow">Get a Quote</div>
+    <h2 class="section-title">Send us the <span>details</span></h2>
+    <div class="quote-grid">
+      <div class="quote-copy">
+        <h3>Photos help the most</h3>
+        <p>The more we can see, the more accurate your quote. Add photos of the junk and tell us what you were hoping to pay.</p>
+        <p>Prefer to talk? Call or text:</p>
+        <a class="phone-big" href="tel:+16783486432">(678) 348-6432</a>
+      </div>
+      <form id="quoteForm" class="quote-form">
+        <div>
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div>
+          <label for="phone">Phone number</label>
+          <input id="phone" name="phone" type="tel" required autocomplete="tel">
+        </div>
+        <div class="full">
+          <label for="items">What needs to go?</label>
+          <textarea id="items" name="items" placeholder="Example: old couch, a fridge, and 6 boxes from the garage." required></textarea>
+        </div>
+        <div class="full">
+          <label for="budget">What were you thinking of paying? <small>(optional)</small></label>
+          <input id="budget" name="budget" type="text" placeholder="Example: around $150">
+        </div>
+        <div class="full">
+          <label for="photos">Photos of the junk <small>(optional)</small></label>
+          <input id="photos" name="photos" type="file" accept="image/*" multiple>
+          <div class="previews" id="previews"></div>
+        </div>
+        <p class="form-note full">Your email app will open. Attach the photos you picked there, or text them to (678) 348-6432.</p>
+        <button type="submit" class="btn">Send Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="container">
+    <h2>Let us do the heavy lifting</h2>
+    <a class="phone" href="tel:+16783486432">(678) 348-6432</a>
+    <a class="btn" href="#book">Book a Free Estimate</a>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Gentleman Junk and Hauling</h4>
+        <p>Junk removal and hauling across Atlanta, GA.</p>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">How It Works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#book">Book an Estimate</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+16783486432">(678) 348-6432</a></li>
+          <li><a href="mailto:gentlemanjunkandhaul@gmail.com">gentlemanjunkandhaul@gmail.com</a></li>
+          <li>Atlanta, GA</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© 2026 Gentleman Junk and Hauling. All rights reserved.</div>
+  </div>
+</footer>
+
+<a href="tel:+16783486432" class="float-call">Call Now</a>
 
 <script>
   // Show thumbnails of the photos the visitor picks.
@@ -127,7 +401,7 @@
       "Photos picked on the site: " + count + " (please attach them to this email)"
     ].join("\n");
     const subject = encodeURIComponent("Quote request from " + v("name"));
-    window.location.href = "mailto:hello@example.com?subject=" + subject + "&body=" + encodeURIComponent(body);
+    window.location.href = "mailto:gentlemanjunkandhaul@gmail.com?subject=" + subject + "&body=" + encodeURIComponent(body);
   });
 </script>
 
